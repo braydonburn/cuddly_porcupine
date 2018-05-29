@@ -5689,7 +5689,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"clipchamp-button\"></div>\n\n<ng-template #noUrl>\n  {{ label }}\n</ng-template>\n\n<span [style.font-size.em]=\"size\">\n  Example <span [style.color]=\"color\">colour</span>\n  <br>\n  Example label:\n  <ng-container>\n    <a target=\"_blank\">{{ label }}</a>\n  </ng-container>\n</span>\n"
+module.exports = "<div class=\"outer\">\n  <h1>Upload your files here</h1>\n  <button class=\"btn\" (click)=\"onClick()\">\n    {{ label }}\n  </button>\n</div>\n"
 
 /***/ }),
 
@@ -5700,7 +5700,7 @@ module.exports = "<div id=\"clipchamp-button\"></div>\n\n<ng-template #noUrl>\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ":host {\n  display: inline-block; }\n  :host span a {\n    color: #000;\n    font-weight: bold; }\n"
+module.exports = ".outer {\n  text-align: center;\n  margin: auto;\n  width: 50%; }\n\n.btn {\n  min-width: 120px;\n  border: none;\n  padding: 0 1em;\n  font-size: 12px;\n  color: #fff;\n  line-height: 40px;\n  text-align: center;\n  background: none;\n  transition: background .3s ease;\n  background-color: #d65a57; }\n\n.btn:hover {\n    background-color: #db6e6b; }\n"
 
 /***/ }),
 
@@ -5728,7 +5728,37 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var ClipchampElementComponent = /** @class */ (function () {
     function ClipchampElementComponent() {
     }
+    Object.defineProperty(ClipchampElementComponent.prototype, "clipchampOptions", {
+        // @Input()
+        // public apiKey: string;
+        get: function () {
+            return {
+                title: this.title,
+                logo: this.logo,
+                label: this.label,
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    //Script to be injected
+    ClipchampElementComponent.prototype.injectScript = function () {
+        var script = document.createElement('script');
+        script.onload = function () {
+            window.clipchampImport = clipchamp(this.clipchampOptions);
+        }.bind(this);
+        script.src = 'https://api.clipchamp.com/NAJv9PRj1VqeoDB9ijt6f9u7-pg/button.js';
+        document.head.appendChild(script);
+    };
+    //Show the clipchamp iframe when button is clicked
+    ClipchampElementComponent.prototype.onClick = function () {
+        window.clipchampImport.open();
+    };
     ClipchampElementComponent.prototype.ngOnInit = function () {
+        //Wait till conent loaded then inject script
+        document.addEventListener("DOMContentLoaded", function (event) {
+            this.injectScript();
+        }.bind(this));
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
@@ -5737,15 +5767,11 @@ var ClipchampElementComponent = /** @class */ (function () {
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", String)
-    ], ClipchampElementComponent.prototype, "size", void 0);
+    ], ClipchampElementComponent.prototype, "logo", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", String)
     ], ClipchampElementComponent.prototype, "title", void 0);
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", String)
-    ], ClipchampElementComponent.prototype, "color", void 0);
     ClipchampElementComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'clipchamp-element',
@@ -5756,15 +5782,6 @@ var ClipchampElementComponent = /** @class */ (function () {
     return ClipchampElementComponent;
 }());
 
-// var el = document.querySelector("#clipchamp-button");
-// var options = {
-//     output: "youtube",
-//       style: {
-//           url:   "https://api.clipchamp.com/static/button/themes/modern-dark.css"
-//      }
-// };
-// clipchamp(el, options);
-//
 
 
 /***/ }),

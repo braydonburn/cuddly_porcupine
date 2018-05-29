@@ -20,7 +20,6 @@ export class ClipchampElementComponent implements OnInit {
 
   // @Input()
   // public apiKey: string;
-  
   get clipchampOptions() {
     return {
       title: this.title,
