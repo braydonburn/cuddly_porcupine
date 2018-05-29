@@ -18,11 +18,12 @@ Insert the following line in your `html` file:
     logo="changeMe.png">
 </clipchamp-element>
 ```
-Start a localhost server in the directory of you HTML file:
+Start any sort of localhost server in the directory of you HTML file:
 ```
 python -m SimpleHTTPServer 8080
 ```
 You should now be able to see and (partially) use the clipchamp button.  
+  
 Note: using gulp to join the files together has caused the clipchamp api to load twice causing an error. The unjoined Angular element still works with no errors.  
 
 ### Parameters
