@@ -1,14 +1,6 @@
-<div id="clipchamp-button"></div>
-
-<ng-template #noUrl>
-  {{ label }}
-</ng-template>
-
-<span [style.font-size.em]="size">
-  Example <span [style.color]="color">colour</span>
-  <br>
-  Example label:
-  <ng-container>
-    <a target="_blank">{{ label }}</a>
-  </ng-container>
-</span>
+<div class="outer">
+  <h1>Upload your files here</h1>
+  <button class="btn" (click)="onClick()">
+    {{ label }}
+  </button>
+</div>

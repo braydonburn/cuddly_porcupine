@@ -6,7 +6,7 @@ Gulp was used to join the distribution files together into a single JS output.
 
 Copy the following script reference before the closing of your `<body>`:
 ```html
-<script src="UPDATE ME"></script>
+<script src="https://github.com/braydonburn/cuddly_porcupine/blob/master/dist/clipchamp-element.js"></script>
 ```
 
 ## How to Use

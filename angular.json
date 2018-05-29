@@ -32,7 +32,9 @@
                 "input": "src/styles.scss"
               }
             ],
-            "scripts": []
+            "scripts": [
+              "https://api.clipchamp.com/NAJv9PRj1VqeoDB9ijt6f9u7-pg/button.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -84,7 +86,6 @@
               }
             ],
             "scripts": [
-              "https://api.clipchamp.com/NAJv9PRj1VqeoDB9ijt6f9u7-pg/button.js"
             ],
             "assets": [
               {
