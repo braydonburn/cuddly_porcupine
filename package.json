@@ -1,6 +1,6 @@
 {
   "name": "angular-clipchamp-element",
-  "version": "1.0",
+  "version": "1.0.0",
   "author": "Braydon Burn",
   "description": "A custom element which wraps the Clipchamp API.",
   "scripts": {
